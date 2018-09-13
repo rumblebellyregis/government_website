@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link href="styles.css" rel="stylesheet" />
+   <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Senate Loyalty</title>
+    
+
+    </head>
+    <body>
+       <header>    
+           <div class="row vertical-align">
+           <div class="col-sm-8"><a href="home-starter-page.html"><img src="logo.PNG" class="img-rounded" alt="TGIF Logo" width="400" height="100"> </a></div>
+  <div class="col-sm-4 inline"><span class="glyphicon glyphicon-envelope righty"></span> <a href="mailto:info@tgif.net">info@tgif.net</a></div>
+  
+</div>        
+      
+        </header>
+        <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="home-starter-page.html">Home</a></li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Congress 113 <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="house-page.html">House 113</a></li>
+          <li><a href="senate-page.html">Senate 113</a></li>
+          
+        </ul>
+      </li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Attendance <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="house-attendance.html">House 113</a></li>
+          <li><a href="senate-attendance.html">Senate 113</a></li>
+          
+        </ul>
+      </li>
+      
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Loyalty<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="house-loyalty.html">House 113</a></li>
+          <li><a href="senate-loyalty.html">Senate 113</a></li>
+          
+        </ul>
+      </li>
+     
+    </ul>
+  </div>
+</nav>
+        
+            <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">  
+    <div class="row">
+        <div class="col-sm-6">
+            <h2>Party Loyalty</h2>
+            <p>Those who consider themselves to be strong partisans, strong Democrats and strong Republicans respectively, tend to be the most faithful in voting for their party's nominee for office and legislation that backs their party's agenda. </p>
+    	    </div>
+    <div id="vue-app">
+          <div v-if="loading">
+                        <img src="worms.jpg" class="img-rounded" alt="incoming Image" width="800" height="400">
+                    </div>
+           <div class="col-sm-6">
+            <h2>Senate at a glance</h2>
+            <div id='attendanceTable' class="responsive table">
+               <table class="table table-bordered table-hover responsive table">
+               <thead>
+                   <tr class="ther">
+                       <th> Party</th> <th> Number Of Representaives</th> <th> Vote With Party</th>
+                   </tr>
+               </thead>
+                <tbody v-if="loaditems">
+                    <tr v-for="sth in senAtteTable">
+                        <td>{{sth.name}}</td> <td>{{sth.reps_number}}</td> <td>{{sth.loyalty}}
+</td>
+                    </tr>
+                </tbody>
+                
+                </table>
+              </div>
+        </div>  
+                 
+
+        
+    <div class="row">
+        <div class="col-sm-6">
+            <h2>Least Loyal (Bottom 10% of Senate)</h2>
+            <div id='least' class="responsive table">
+                 <table class="table table-bordered table-hover responsive table">
+               <thead>
+                   <tr class="ther">
+                       <th> Name</th> <th> Party</th> <th> Vote With Party</th>
+                   </tr>
+               </thead>
+               <tbody v-if="loaditems" >
+                    <tr v-if="sentLoyal" v-for="(a,index) in sentLoyal">
+                    <td v-if="a"><a v-bind:href="a.link" target="blank">{{a.name}}</a></td>
+                    <td v-if="a">{{a.sent_votes}}</td> 
+                    <td v-if="a">{{a.vote_with_party}}%</td></tr>
+                </tbody>
+                
+                </table>
+                
+                
+                
+              </div>
+        </div>
+     <div class="col-sm-6">
+            <h2>Most Loyal (Top 10% of Senate)</h2>
+            <div id='most' class="responsive table">
+              <table class="table table-bordered table-hover responsive table" >
+               <thead >
+                   <tr class="ther">
+                       <th > Name</th> <th> Votes</th> <th > Vote With Party</th>
+                   </tr>
+               </thead>
+                <tbody v-if="loaditems" >
+                    <tr v-if="sentDisloyal" v-for="(a,index) in sentDisloyal">
+                    <td v-if="a"><a v-bind:href="a.link" target="blank">{{a.name}}</a></td> 
+                    <td v-if="a">{{a.sent_votes}}</td> 
+                    <td v-if="a">{{a.vote_with_party}}%</td></tr>
+                </tbody>
+                
+                </table>
+                
+                
+                 </div>
+              </div>
+        </div>
+           </div> 
+</div>
+    	</div>  
+        </div> 
+        
+ <div class="text-center bg-secondary">&copy; 2018 TGIF | All Rights Reserved </div>
+   
+        
+    	<script type="text/javascript" src="statisticssenate.js"></script>
+    	
+</body>
+</html>
